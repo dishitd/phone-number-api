@@ -11,7 +11,7 @@ server:
 spring:
   application.name: phone-number-api
   flyway:
-    locations: db/migrations
+    locations: db/schema
     check-location: false
   db:
     host: localhost
@@ -31,6 +31,7 @@ spring:
       connectionTestQuery: select 1
       connectionInitSql: select 1
   jpa:
+    #    database-platform: org.hibernate.dialect.PostgresSQLDialect
     properties.hibernate:
       jdbc:
         lob:
@@ -39,7 +40,3 @@ spring:
       order_inserts: 1000
       order_updaets: 1000
       batch_versioned_data: true
-
-services:
-  getPhoneNumber:
-    pageSize: 1

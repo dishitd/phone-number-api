@@ -11,9 +11,9 @@ import java.util.Optional;
 @Repository
 public interface PhoneRepo extends JpaRepository<PhoneNumber, String> {
 
-    @Query(value = "SELECT * FROM phone_number WHERE customer_id = ?", nativeQuery = true)
-    Optional<List<PhoneNumber>> findByCustomerId(String customerId);
+  @Query(value = "SELECT * FROM phone_number WHERE customer_id = ?", nativeQuery = true)
+  Optional<List<PhoneNumber>> findByCustomerId(String customerId);
 
-    @Query(value = "SELECT * FROM phone_number WHERE customer_id = ? AND phone_no= ?", nativeQuery = true)
-    Optional<PhoneNumber> findByCustomerIdAndPhoneNumber(String customerId, String phoneNumber);
+  @Query(value = "SELECT * FROM phone_number WHERE customer_id = ? AND phone_no = ?", nativeQuery = true)
+  Optional<PhoneNumber> findByCustomerIdAndPhoneNumber(String customerId, String phoneNumber);
 }

@@ -2,6 +2,7 @@ package com.belong.phone.services;
 
 import com.belong.phone.exceptions.DataNotFoundException;
 import com.belong.phone.models.PhoneNumber;
+import com.belong.phone.models.PhoneNumberDto;
 import com.belong.phone.repository.PhoneRepo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +12,7 @@ import javax.transaction.Transactional;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -19,8 +21,10 @@ public class PhoneService {
 
     private final PhoneRepo phoneRepo;
 
-    public List<PhoneNumber> getPhoneNumber(String customerId, String correlationId) {
-        return Objects.isNull(customerId) ? phoneRepo.findAll() : getPhoneNumberByCustomer(customerId, correlationId);
+    public List<PhoneNumberDto> getPhoneNumber(String customerId, String correlationId) {
+        List<PhoneNumber> phoneNumbers = Objects.isNull(customerId) ? phoneRepo.findAll()
+            : getPhoneNumberByCustomer(customerId, correlationId);
+        return phoneNumbers.stream().parallel().map(PhoneNumberDto::mapPhoneNumber).collect(Collectors.toList());
     }
 
     private List<PhoneNumber> getPhoneNumberByCustomer(String customerId, String correlationId) {

@@ -17,9 +17,9 @@ import org.springframework.http.HttpStatus;
 @ToString
 public class ApiError {
 
-    private String errorId;
-    private String message;
+  private String errorId;
+  private String message;
 
-    @JsonIgnore
-    private HttpStatus httpStatus;
+  @JsonIgnore
+  private HttpStatus httpStatus;
 }

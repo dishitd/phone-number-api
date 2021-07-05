@@ -18,12 +18,12 @@ import java.util.UUID;
 @NoArgsConstructor
 public class PhoneNumber {
 
-    @Id
-    private UUID id;
-    private String customerId;
-    private String phoneNo;
-    private boolean isActive;
+  @Id
+  private UUID id;
+  private String customerId;
+  private String phoneNo;
+  private boolean isActive;
 
-    @CreatedDate
-    private LocalDateTime createdTime;
+  @CreatedDate
+  private LocalDateTime createdTime;
 }
