@@ -1,0 +1,41 @@
+management:
+  info:
+    git.mode: full
+  endpoints:
+    web.exposure.include: health,info
+
+server:
+  port: 8090
+  servlet:
+    context-path: /phone-number
+spring:
+  application.name: phone-number-api
+  flyway:
+    locations: db/migrations
+    check-location: false
+  db:
+    host: localhost
+    port: 5432
+    dbname: postgres
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+    type: com.zaxxer.hikari.HikariDataSource
+    hikari:
+      minimumIdle: 10
+      maximumPoolSize: 10
+      idleTimeout: 30000
+      poolName: SpringBootJpaPool
+      connectionTestQuery: select 1
+      connectionInitSql: select 1
+  jpa:
+    properties.hibernate:
+      jdbc:
+        lob:
+          non_contextual_creation: true
+        batch_size: 1000
+      order_inserts: 1000
+      order_updaets: 1000
+      batch_versioned_data: true
