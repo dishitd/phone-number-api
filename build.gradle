@@ -91,3 +91,6 @@ task integrationTest(type: Test) {
     }
     useJUnitPlatform()
 }
+bootRun {
+    dependsOn += ['flywayClean', 'flywayMigrate']
+}

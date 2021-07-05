@@ -34,20 +34,12 @@ In addition to above, the code has below features:
 * Integrated DB Migration using Flyway
 * Code has tests in 3 categories:
   * unit test for logic tests * component test for DB query validation
-    * integration test to validate end to end API calls using RestAssured
+  * integration test to validate end to end API calls using RestAssured
 * Integrated with Jacoco for test coverage
 * Integrated with Swagger to view interface specification
 * Enabled actuator for health check
 
-### Steps to get the code running
-
-#### Pre-requisites
-
-* Checkout the code from github repository
-* Go to the terminal under /phone-number
-* Execute ./gradlew bootRun
-
-#### Important Gradle Tasks
+## Important Gradle Tasks
 
 | Gradle Tasks | Description | Pre-requisite |
 | ------------ | ----------- | ------------- |
@@ -55,6 +47,16 @@ In addition to above, the code has below features:
 | `./gradlew test` | Executes unit and component test | composeUp is required for componentTest |
 | `./gradlew bootRun`| Starts Application|
 | `./gradlew integrationTest` | Executes integration test | ./gradlew bootRun|
+
+## Steps to get the code running
+
+* Checkout the code from Github repository
+* Go to the terminal under `/phone-number-api`
+* Execute `./gradlew composeUp` to start Postgres DB
+* To load sample data:
+  * Go to `/phone-number-api/src/test/resources/db/test_data` and execute the `phone_number_setup.sql` script. This will
+    load sample data into DB
+* Execute `./gradlew bootRun`
 
 ### Interface Specification
 
