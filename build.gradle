@@ -8,7 +8,6 @@ buildscript {
         classpath "com.avast.gradle:gradle-docker-compose-plugin:0.14.3"
         classpath "gradle.plugin.org.flywaydb:gradle-plugin-publishing:7.11.0"
         classpath "com.avast.gradle:gradle-docker-compose-plugin:0.14.3"
-        classpath 'com.wiredforcode:gradle-spawn-plugin:0.8.0'
 
     }
 }
@@ -28,7 +27,6 @@ apply plugin: 'docker'
 apply plugin: 'docker-compose'
 apply plugin: 'org.flywaydb.flyway'
 apply plugin: 'docker-compose'
-apply plugin: 'com.wiredforcode.spawn'
 
 configurations {
     compileOnly {

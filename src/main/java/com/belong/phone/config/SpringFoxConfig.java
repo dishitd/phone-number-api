@@ -7,6 +7,10 @@ import springfox.documentation.builders.RequestHandlerSelectors;
 import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 
+import java.util.function.Predicate;
+
+import static springfox.documentation.builders.PathSelectors.regex;
+
 @Configuration
 public class SpringFoxConfig {
 
@@ -15,7 +19,12 @@ public class SpringFoxConfig {
     return new Docket(DocumentationType.SWAGGER_2)
         .select()
         .apis(RequestHandlerSelectors.any())
-        .paths(PathSelectors.any())
+        .paths(getPaths())
         .build();
   }
+
+  private Predicate<String> getPaths() {
+    return regex(".*phones.*");
+  }
+
 }
