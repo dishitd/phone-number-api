@@ -40,3 +40,7 @@ spring:
       order_inserts: 1000
       order_updaets: 1000
       batch_versioned_data: true
+
+services:
+  phoneNo:
+    pageSize: 10

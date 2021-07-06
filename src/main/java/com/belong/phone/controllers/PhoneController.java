@@ -1,7 +1,7 @@
 package com.belong.phone.controllers;
 
 
-import com.belong.phone.models.PhoneNumberDto;
+import com.belong.phone.models.PhoneNumberResponse;
 import com.belong.phone.services.PhoneService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -14,8 +14,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.util.List;
 import java.util.concurrent.Callable;
 
 @RestController
@@ -27,13 +27,19 @@ public class PhoneController {
   private final PhoneService phoneService;
 
   @GetMapping("v1/phones")
-  public Callable<ResponseEntity<List<PhoneNumberDto>>> getPhoneNumbers(
+  public Callable<ResponseEntity<PhoneNumberResponse>> getPhoneNumbers(
       @RequestHeader final HttpHeaders requestHeaders,
-      @RequestParam(name = "customerId", required = false) String customerId) {
+      @RequestParam(name = "customerId", required = false) String customerId,
+      @RequestParam(name = "pageToken", required = false) String pageToken,
+      @RequestParam(name = "pageSize", required = false,
+          defaultValue = "${services.phoneNo.pageSize}") @Min(2) int pageSize
+
+  ) {
 
     String correlationId = requestHeaders.getFirst(X_CORRELATION_ID);
     log.debug("Request received. correlationId: {}, customerId: {}", correlationId, customerId);
-    return () -> new ResponseEntity<>(phoneService.getPhoneNumber(customerId, correlationId), HttpStatus.OK);
+    return () -> new ResponseEntity<>(phoneService.getPhoneNumber(customerId, pageToken, pageSize, correlationId),
+        HttpStatus.OK);
   }
 
   @PutMapping("v1/phones/active")
