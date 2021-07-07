@@ -33,7 +33,8 @@ In addition to above, the code has below features:
 * DB can be started using `./gradlew composeUp`
 * Integrated DB Migration using Flyway
 * Code has tests in 3 categories:
-  * unit test for logic tests * component test for DB query validation
+  * unit test for logic tests 
+  * component test for DB query validation
   * integration test to validate end to end API calls using RestAssured
 * Integrated with Jacoco for test coverage
 * Integrated with Swagger to view interface specification
