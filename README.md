@@ -30,7 +30,7 @@ Functionally, I have also implemented deactivating phone number API.
 
 In addition to above, the code has below features:
 
-* DB can be started using `./gradlew composeDown`
+* DB can be started using `./gradlew composeUp`
 * Integrated DB Migration using Flyway
 * Code has tests in 3 categories:
   * unit test for logic tests * component test for DB query validation
